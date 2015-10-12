@@ -1,6 +1,6 @@
 # react-google-tag-manager
 
-This repository contains the a react based implementation for 
+This repository contains a react based implementation for
 Google's Tag Manager [snippet](https://developers.google.com/tag-manager/quickstart).
 
 ## Motivation & Expectation
