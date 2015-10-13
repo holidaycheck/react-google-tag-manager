@@ -4,7 +4,7 @@
   "description": "This package contains a react based implementation for Google's Tag Manager snippet.",
   "main": "lib/build-gtm-parts.js",
   "scripts": {
-    "compile": "babel -d src/ lib/",
+    "compile": "babel src/ --out-dir lib/ -x '.js,.jsx'",
     "prepublish": "npm run compile",
     "lint": "eslint --ext '.js' --cache .",
     "test": "mocha test/ --opts test/mocha.opts"
@@ -30,7 +30,11 @@
     "chai": "^3.3.0",
     "chai-string": "^1.1.3",
     "eslint": "^1.6.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "react": "^0.14.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0"
   },
   "files": [
     "lib/",
