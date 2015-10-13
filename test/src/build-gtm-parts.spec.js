@@ -43,4 +43,12 @@ describe('The function gtmParts', () => {
         expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('"anotherCustomEvent":false', 1);
         expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('"oneMoreWithNumber":123', 1);
     });
+
+    it('should return an object with a property `iframe`', () => {
+        expect(gtmParts).to.have.property('iframe');
+    });
+
+    it('should return an object with a property `script`', () => {
+        expect(gtmParts).to.have.property('script');
+    });
 });
