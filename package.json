@@ -6,6 +6,7 @@
   "scripts": {
     "compile": "babel -d src/ lib/",
     "prepublish": "npm run compile",
+    "lint": "eslint --ext '.js' --cache .",
     "test": "mocha test/ --opts test/mocha.opts"
   },
   "repository": {
@@ -27,6 +28,7 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "chai": "^3.3.0",
+    "eslint": "^1.6.0",
     "mocha": "^2.3.3"
   }
 }
