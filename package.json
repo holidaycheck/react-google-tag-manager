@@ -1,0 +1,30 @@
+{
+  "name": "react-google-tag-manager",
+  "version": "0.0.0",
+  "description": "This package contains a react based implementation for Google's Tag Manager snippet.",
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "babel -d src/ lib/",
+    "prepublish": "npm run compile",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holidaycheck/react-google-tag-manager.git"
+  },
+  "keywords": [
+    "react",
+    "GTM",
+    "tagmanager",
+    "Google Tag Manager"
+  ],
+  "author": "Carsten Lamm <carsten.lamm@holidaycheck.de>",
+  "license": "Beerware",
+  "bugs": {
+    "url": "https://github.com/holidaycheck/react-google-tag-manager/issues"
+  },
+  "homepage": "https://github.com/holidaycheck/react-google-tag-manager#readme",
+  "devDependencies": {
+    "babel": "^5.8.23"
+  }
+}
