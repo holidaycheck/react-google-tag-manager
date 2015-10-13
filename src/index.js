@@ -1,5 +1,5 @@
-let gtmParts = {
-    iframe: `Foo ${1+1}`
-}
+const gtmParts = {
+    iframe: '`Foo ${1+1}`'
+};
 
 export default gtmParts;
