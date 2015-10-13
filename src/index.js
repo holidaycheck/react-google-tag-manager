@@ -1,3 +1,5 @@
-export default function () {
-    return "Foo`${1+1}`"
+let gtmParts = {
+    iframe: `Foo ${1+1}`
 }
+
+export default gtmParts;

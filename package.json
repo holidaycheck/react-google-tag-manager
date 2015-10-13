@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "babel -d src/ lib/",
     "prepublish": "npm run compile",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/ --opts test/mocha.opts"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/holidaycheck/react-google-tag-manager#readme",
   "devDependencies": {
-    "babel": "^5.8.23"
+    "babel": "^5.8.23",
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3"
   }
 }
