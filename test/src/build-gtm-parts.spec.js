@@ -30,4 +30,17 @@ describe('The function gtmParts', () => {
     it('should have a `dataLayerName` default', () => {
         expect(buildGTMParts(onlyIdArgs).script).to.have.entriesCount('dataLayer', 2);
     });
+
+    it('should consume additional events as object', () => {
+        const additionalEvents = {
+            myCustomEvent: 'asd',
+            anotherCustomEvent: false,
+            oneMoreWithNumber: 123
+        };
+        const addtionalEventsArgs = Object.assign(onlyIdArgs, { additionalEvents });
+
+        expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('myCustomEvent":"asd"', 1);
+        expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('"anotherCustomEvent":false', 1);
+        expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('"oneMoreWithNumber":123', 1);
+    });
 });
