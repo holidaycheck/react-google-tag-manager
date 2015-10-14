@@ -2,7 +2,7 @@ function convertToKeyValueString(obj) {
     return JSON.stringify(obj).slice(1, -1);
 }
 
-function buildGTMParts({ id, dataLayerName = 'dataLayer', additionalEvents = {} }) {
+function buildParts({ id, dataLayerName = 'dataLayer', additionalEvents = {} }) {
     if (id === undefined) {
         throw new Error('No GTM id provided');
     }
@@ -25,4 +25,4 @@ function buildGTMParts({ id, dataLayerName = 'dataLayer', additionalEvents = {} 
     };
 }
 
-export default buildGTMParts;
+export default buildParts;

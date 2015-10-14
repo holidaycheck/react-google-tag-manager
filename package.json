@@ -2,7 +2,7 @@
   "name": "react-google-tag-manager",
   "version": "0.2.0",
   "description": "This package contains a react based implementation for Google's Tag Manager snippet.",
-  "main": "lib/build-gtm-parts.js",
+  "main": "lib/index.js",
   "scripts": {
     "compile": "babel src/ --out-dir lib/ -x '.js,.jsx'",
     "prepublish": "npm run compile",

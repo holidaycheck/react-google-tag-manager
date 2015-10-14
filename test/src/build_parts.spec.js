@@ -1,34 +1,34 @@
 import { expect } from 'chai';
-const buildGTMParts = require('../../src/build-gtm-parts');
+const buildParts = require('../../src/build_parts');
 let onlyIdArgs;
-let gtmParts;
+let parts;
 
-describe('The function gtmParts', () => {
+describe('The function buildParts', () => {
     beforeEach(() => {
         onlyIdArgs = { id: 'GTM-asd123' };
-        gtmParts = buildGTMParts(onlyIdArgs);
+        parts = buildParts(onlyIdArgs);
     });
 
     it('should consume an `id` and use it for the iframe', () => {
-        expect(gtmParts.iframe).to.have.entriesCount('id=GTM-asd123', 1);
+        expect(parts.iframe).to.have.entriesCount('id=GTM-asd123', 1);
     });
 
     it('should consume an `id` and use it for the script', () => {
-        expect(gtmParts.script).to.have.entriesCount('GTM-asd123', 1);
+        expect(parts.script).to.have.entriesCount('GTM-asd123', 1);
     });
 
     it('should through an exception when no id is provided', () => {
-        expect(() => buildGTMParts()).to.throw(Error);
+        expect(() => buildParts()).to.throw(Error);
     });
 
     it('should consume a `dataLayerName`', () => {
         const dataLayerArgs = Object.assign(onlyIdArgs, { dataLayerName: 'MyFooBarLayer' });
 
-        expect(buildGTMParts(dataLayerArgs).script).to.have.entriesCount('MyFooBarLayer', 1);
+        expect(buildParts(dataLayerArgs).script).to.have.entriesCount('MyFooBarLayer', 1);
     });
 
     it('should have a `dataLayerName` default', () => {
-        expect(buildGTMParts(onlyIdArgs).script).to.have.entriesCount('dataLayer', 2);
+        expect(buildParts(onlyIdArgs).script).to.have.entriesCount('dataLayer', 2);
     });
 
     it('should consume additional events as object', () => {
@@ -39,16 +39,16 @@ describe('The function gtmParts', () => {
         };
         const addtionalEventsArgs = Object.assign(onlyIdArgs, { additionalEvents });
 
-        expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('myCustomEvent":"asd"', 1);
-        expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('"anotherCustomEvent":false', 1);
-        expect(buildGTMParts(addtionalEventsArgs).script).to.have.entriesCount('"oneMoreWithNumber":123', 1);
+        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('myCustomEvent":"asd"', 1);
+        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"anotherCustomEvent":false', 1);
+        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"oneMoreWithNumber":123', 1);
     });
 
     it('should return an object with a property `iframe`', () => {
-        expect(gtmParts).to.have.property('iframe');
+        expect(parts).to.have.property('iframe');
     });
 
     it('should return an object with a property `script`', () => {
-        expect(gtmParts).to.have.property('script');
+        expect(parts).to.have.property('script');
     });
 });
