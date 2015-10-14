@@ -1,3 +1,7 @@
+[![NPM Version](https://img.shields.io/npm/v/react-google-tag-manager.svg?style=flat)](https://www.npmjs.org/package/react-google-tag-manager)
+[![Build Status](https://img.shields.io/travis/holidaycheck/react-google-tag-manager/master.svg?style=flat)](https://travis-ci.org/holidaycheck/react-google-tag-manager)
+[![Dependencies](http://img.shields.io/david/holidaycheck/react-google-tag-manager.svg?style=flat)](https://david-dm.org/holidaycheck/react-google-tag-manager)
+
 # react-google-tag-manager
 
 This repository contains a react based implementation for
