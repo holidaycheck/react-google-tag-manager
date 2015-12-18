@@ -16,8 +16,8 @@ Other requirements for the GTM implementation are:
 
 1. provide a GTM-ID
 1. provide additional events on script initialization (optional)
-1. provide a name for the datalayer (optional)
-1. works for server-side-rendering and client-side-rendering
+1. provide a name for the dataLayer (optional)
+1. can be used for server-side-rendering and client-side-rendering
 1. contains tests
 1. installable via npm
 
@@ -26,21 +26,30 @@ Other requirements for the GTM implementation are:
 To use it in your project run `npm i react-google-tag-manager`. It could be used like the following example:
 
 ```javascript
-import gtmParts from 'react-google-tag-manager'
+import React from 'react';
+import gtmParts from 'react-google-tag-manager';
 
-export default class GoogleTagManager extends React.Component {
+class GoogleTagManager extends React.Component {
+    componentDidMount() {
+        const dataLayerName = this.props.dataLayerName || 'dataLayer';
+        const scriptId = this.props.scriptId || 'react-google-tag-manager-gtm';
+
+        if (!window[dataLayerName]) {
+            const gtmScriptNode = document.getElementById(scriptId);
+
+            eval(gtmScriptNode.textContent);
+        }
+    }
+
     render() {
         const gtm = gtmParts({
-          id: 'GTM-12345',
-          dataLayerName: 'customDatalayer',
-          additionalEvents: {
-              myCustomEvent: 'FooBar',
-              anotherEvent: true
-          }
+            id: this.props.gtmId,
+            dataLayerName: this.props.dataLayerName || 'dataLayer',
+            additionalEvents: this.props.additionalEvents || {}
         });
 
         return (
-            <div id="gtm">
+            <div id={this.props.scriptId || 'react-google-tag-manager-gtm'}>
                 {gtm.noScriptAsReact()}
                 {gtm.scriptAsReact()}
             </div>
@@ -48,15 +57,41 @@ export default class GoogleTagManager extends React.Component {
     }
 }
 
+GoogleTagManager.propTypes = {
+    gtmId: React.PropTypes.string.isRequired,
+    dataLayerName: React.PropTypes.string,
+    additionalEvents: React.PropTypes.object,
+    scriptId: React.PropTypes.string
+};
+
+export default GoogleTagManager;
 ```
 
-`gtmParts` takes the following arguments:
+You can render this later simply by
+
+```
+// inside the render method where you want to include the tag manager
+<GoogleTagManager gtmId='GTM-12345' />
+```
+
+In this example the google tag manager id, the dataLayer name, additional events and the script id where gtm script should be mounted are configurable through props:
+
+| prop  | required 		|default value|
+| -------------- | ------------- |-------------|
+| `gtmId`  				| yes  		|	           |
+| `dataLayerName`  | no  			| `dataLayer` |
+| `additionalEvents`  | no  			| `{}` |
+| `scriptId`  | no  			| `react-google-tag-manager-gtm` |
+
+## Notes:
+
+* The `componentDidMount` part is required is required as React the script contents itself would not be executed otherwise on the client side
+* As `eval` can be used to do harm, make sure that you are understanding what you are doing here and read through the script that is evaluated
+* Additionally this module exports `noScriptAsHTML()` and `scriptAsHTML()` which return a simple HTML string
+* `gtmParts` takes the following arguments:
 
 | argument keys  | required 		|default value|
 | -------------- | ------------- |-------------|
 | `id`  				| yes  		|	           |
 | `dataLayerName`  | no  			| `dataLayer` |
 | `additionalEvents`  | no  			| `{}` |
-
-
-Additionaly are the functions `gtm.noScriptAsHTML()` and `gtm.scriptAsHTML()` implemented which return a simple HTML string.
