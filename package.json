@@ -21,7 +21,7 @@
     "Google Tag Manager"
   ],
   "author": "Carsten Lamm <carsten.lamm@holidaycheck.de>",
-  "license": "Beerware",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/holidaycheck/react-google-tag-manager/issues"
   },
