@@ -21,6 +21,10 @@
     "Google Tag Manager"
   ],
   "author": "Carsten Lamm <carsten.lamm@holidaycheck.de>",
+  "contributors": [
+    "Alexander Schmidt <alexanderschmidt1@gmail.com>",
+    "Mathias Schreck <schreck.mathias@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/holidaycheck/react-google-tag-manager/issues"
