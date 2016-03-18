@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "babel src/ --out-dir lib/ -x '.js,.jsx'",
     "prepublish": "npm run compile",
-    "lint": "eslint --ext '.js' --cache .",
+    "lint": "eslint --ext '.js' --ext '.jsx' --cache .",
     "pretest": "npm run lint",
     "test": "mocha test/ --opts test/mocha.opts"
   },
@@ -34,7 +34,9 @@
     "babel": "^5.8.23",
     "chai": "^3.3.0",
     "chai-string": "^1.1.3",
-    "eslint": "^1.6.0",
+    "eslint": "2.4.0",
+    "eslint-config-holidaycheck": "0.4.0",
+    "eslint-plugin-react": "4.2.3",
     "mocha": "^2.3.3",
     "react": "^0.14.0"
   },
