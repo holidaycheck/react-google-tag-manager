@@ -7,6 +7,9 @@
         "ecmaFeatures": {
             "jsx": true
         }
-    }
+    },
+    "plugins": [ "eslint-plugin-react" ],
+    "rules": {
+        "react/jsx-uses-react": "error"
     }
 }
