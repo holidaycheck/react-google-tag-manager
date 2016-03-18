@@ -1,6 +1,6 @@
 import { expect } from 'chai';
+import gtmParts from '../../src/index.jsx';
 
-const gtmParts = require('../../src/index.jsx');
 const gtmId = 'foobar-123';
 const parts = gtmParts({ id: gtmId });
 
