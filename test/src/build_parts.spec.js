@@ -1,6 +1,6 @@
 import { expect } from 'chai';
+import buildParts from '../../src/build_parts';
 
-const buildParts = require('../../src/build_parts');
 let onlyIdArgs;
 let parts;
 

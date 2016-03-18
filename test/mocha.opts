@@ -1,4 +1,4 @@
 --reporter spec
 --recursive
 --require ./test/setup.js
---compilers js:./test/babelCompiler.js
+--compilers js:babel-register
