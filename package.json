@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "babel src/ --out-dir lib/ -x '.js,.jsx'",
     "prepublish": "npm run compile",
-    "lint": "eslint --ext '.js' --cache .",
+    "lint": "eslint --ext '.js' --ext '.jsx' --cache .",
     "pretest": "npm run lint",
     "test": "mocha test/ --opts test/mocha.opts"
   },

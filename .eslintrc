@@ -2,5 +2,11 @@
     "extends": "holidaycheck/es2015",
     "env": {
         "node": "true"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    }
     }
 }
