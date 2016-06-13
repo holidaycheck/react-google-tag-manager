@@ -49,9 +49,11 @@ class GoogleTagManager extends React.Component {
         });
 
         return (
-            <div id={this.props.scriptId || 'react-google-tag-manager-gtm'}>
-                {gtm.noScriptAsReact()}
-                {gtm.scriptAsReact()}
+            <div>
+                <div>{gtm.noScriptAsReact()}</div>
+                <div id={this.props.scriptId || 'react-google-tag-manager-gtm'}>
+                    {gtm.scriptAsReact()}
+                </div>
             </div>
         );
     }
@@ -72,16 +74,21 @@ You can render this later simply by
 ```
 // inside the render method where you want to include the tag manager
 <GoogleTagManager gtmId='GTM-12345' />
+
+// or with all optional parameters
+const event = { platform: 'react-stack' }
+
+<GoogleTagManager gtmId='GTM-12345' scriptId='gtm-script-container' dataLayerName='dl-backup' additionalEvents={event} />
 ```
 
 In this example the google tag manager id, the dataLayer name, additional events and the script id where gtm script should be mounted are configurable through props:
 
-| prop  | required 		|default value|
-| -------------- | ------------- |-------------|
-| `gtmId`  				| yes  		|	           |
-| `dataLayerName`  | no  			| `dataLayer` |
-| `additionalEvents`  | no  			| `{}` |
-| `scriptId`  | no  			| `react-google-tag-manager-gtm` |
+| prop                | required      | default value                   |
+| ------------------- | ------------- |-------------------------------- |
+| `gtmId`             | yes           |                                 |
+| `dataLayerName`     | no            | `dataLayer`                     |
+| `additionalEvents`  | no            | `{}`                            |
+| `scriptId`          | no            | `react-google-tag-manager-gtm`  |
 
 ## Notes:
 
@@ -90,8 +97,8 @@ In this example the google tag manager id, the dataLayer name, additional events
 * Additionally this module exports `noScriptAsHTML()` and `scriptAsHTML()` which return a simple HTML string
 * `gtmParts` takes the following arguments:
 
-| argument keys  | required 		|default value|
-| -------------- | ------------- |-------------|
-| `id`  				| yes  		|	           |
-| `dataLayerName`  | no  			| `dataLayer` |
-| `additionalEvents`  | no  			| `{}` |
+| argument keys       | required      | default value |
+| ------------------- | ------------- | ------------- |
+| `id`                | yes           |               |
+| `dataLayerName`     | no            | `dataLayer`   |
+| `additionalEvents`  | no            | `{}`          |
