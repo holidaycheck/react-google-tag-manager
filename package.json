@@ -40,7 +40,7 @@
     "eslint": "2.12.0",
     "eslint-config-holidaycheck": "0.8.0",
     "eslint-plugin-react": "5.1.1",
-    "mocha": "^2.3.3",
+    "mocha": "^2.5.0",
     "react": "15.1.0"
   },
   "peerDependencies": {
