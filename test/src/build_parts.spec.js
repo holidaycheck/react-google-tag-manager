@@ -34,15 +34,15 @@ describe('The function buildParts', () => {
 
     it('should consume additional events as object', () => {
         const additionalEvents = {
-            myCustomEvent: 'asd',
-            anotherCustomEvent: false,
-            oneMoreWithNumber: 123
+            platform: 'react-stack',
+            forceMobile: false,
+            clientTimestamp: 1465848238816
         };
         const addtionalEventsArgs = Object.assign(onlyIdArgs, { additionalEvents });
 
-        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"myCustomEvent":"asd"', 1);
-        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"anotherCustomEvent":false', 1);
-        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"oneMoreWithNumber":123', 1);
+        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"platform":"react-stack"', 1);
+        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"forceMobile":false', 1);
+        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"clientTimestamp":1465848238816', 1);
     });
 
     it('should return an object with a property `iframe`', () => {
