@@ -40,7 +40,7 @@ describe('The function buildParts', () => {
         };
         const addtionalEventsArgs = Object.assign(onlyIdArgs, { additionalEvents });
 
-        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('myCustomEvent":"asd"', 1);
+        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"myCustomEvent":"asd"', 1);
         expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"anotherCustomEvent":false', 1);
         expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"oneMoreWithNumber":123', 1);
     });
