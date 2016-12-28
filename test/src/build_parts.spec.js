@@ -32,6 +32,18 @@ describe('The function buildParts', () => {
         expect(buildParts(onlyIdArgs).script).to.have.entriesCount('dataLayer', 2);
     });
 
+    it('should use a provided `scheme` option', () => {
+        const schemaWithIdArgs = Object.assign(onlyIdArgs, { scheme: 'https:' });
+
+        expect(buildParts(schemaWithIdArgs).script).to.have.entriesCount('https:', 1);
+        expect(buildParts(schemaWithIdArgs).iframe).to.have.entriesCount('https:', 1);
+    });
+
+    it('should not define `scheme` if it was not specified', () => {
+        expect(buildParts(onlyIdArgs).script).to.have.entriesCount('.src=\'//', 1);
+        expect(buildParts(onlyIdArgs).iframe).to.have.entriesCount(' src="//', 1);
+    });
+
     it('should consume additional events as object', () => {
         const additionalEvents = {
             platform: 'react-stack',
