@@ -39,6 +39,12 @@ describe('The function buildParts', () => {
         expect(buildParts(schemaWithIdArgs).iframe).to.have.entriesCount('https:', 1);
     });
 
+    it('should use a provided `useoptimizehide` option', () => {
+        const schemaWithIdArgs = Object.assign(onlyIdArgs, { useoptimizehide: 'true' });
+        expect(buildParts(schemaWithIdArgs).script).to.have.entriesCount('dataLayer', 3);
+        expect(buildParts(schemaWithIdArgs).script).to.have.entriesCount('GTM-asd123', 2);
+    });
+
     it('should not define `scheme` if it was not specified', () => {
         expect(buildParts(onlyIdArgs).script).to.have.entriesCount('.src=\'//', 1);
         expect(buildParts(onlyIdArgs).iframe).to.have.entriesCount(' src="//', 1);
