@@ -20,11 +20,21 @@ function GTMParts(args) {
         return `<script>${parts.script}</script>`;
     }
 
+    function optimizehideAsReact() {
+        return <script dangerouslySetInnerHTML={{ __html: parts.optimizehide }}></script>;
+    }
+
+    function optimizehideAsHTML() {
+        return `<script>${parts.optimizehide}</script>`;
+    }
+
     return {
         noScriptAsReact,
         noScriptAsHTML,
         scriptAsReact,
-        scriptAsHTML
+        scriptAsHTML,
+        optimizehideAsReact,
+        optimizehideAsHTML
     };
 }
 

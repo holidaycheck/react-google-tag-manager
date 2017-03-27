@@ -1,6 +1,6 @@
 {
   "name": "react-google-tag-manager",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "This package contains a react based implementation for Google's Tag Manager snippet.",
   "main": "lib/index.js",
   "scripts": {
@@ -23,7 +23,8 @@
   "author": "Carsten Lamm <carsten.lamm@holidaycheck.de>",
   "contributors": [
     "Alexander Schmidt <alexanderschmidt1@gmail.com>",
-    "Mathias Schreck <schreck.mathias@gmail.com>"
+    "Mathias Schreck <schreck.mathias@gmail.com>",
+    "Rob Huzzey <robert.huzzey@holidayextras.com>"
   ],
   "license": "MIT",
   "bugs": {
