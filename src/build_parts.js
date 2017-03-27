@@ -30,8 +30,7 @@ function buildParts({ id, dataLayerName = 'dataLayer', additionalEvents = {}, sc
 
     return {
         iframe,
-        script,
-        optimizehide
+        script
     };
 }
 
