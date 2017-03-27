@@ -102,3 +102,5 @@ In this example the google tag manager id, the dataLayer name, additional events
 | `id`                | yes           |               |
 | `dataLayerName`     | no            | `dataLayer`   |
 | `additionalEvents`  | no            | `{}`          |
+| `scheme`            | no            | `''`          |
+| `useoptimizehide`   | no            | `false`       |
