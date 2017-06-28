@@ -28,6 +28,14 @@ describe('The function buildParts', () => {
         expect(buildParts(dataLayerArgs).script).to.have.entriesCount('MyFooBarLayer', 1);
     });
 
+    it('should consume a `previewVariables`', () => {
+        const dataLayerArgs = Object.assign(onlyIdArgs,
+          { previewVariables: '&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x' });
+
+        expect(buildParts(dataLayerArgs).script).to.have
+            .entriesCount('&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x', 1);
+    });
+
     it('should have a `dataLayerName` default', () => {
         expect(buildParts(onlyIdArgs).script).to.have.entriesCount('dataLayer', 2);
     });
