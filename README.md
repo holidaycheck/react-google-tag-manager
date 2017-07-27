@@ -45,7 +45,8 @@ class GoogleTagManager extends React.Component {
         const gtm = gtmParts({
             id: this.props.gtmId,
             dataLayerName: this.props.dataLayerName || 'dataLayer',
-            additionalEvents: this.props.additionalEvents || {}
+            additionalEvents: this.props.additionalEvents || {},
+            previewVariables: this.props.previewVariables || false,
         });
 
         return (
@@ -63,6 +64,7 @@ GoogleTagManager.propTypes = {
     gtmId: React.PropTypes.string.isRequired,
     dataLayerName: React.PropTypes.string,
     additionalEvents: React.PropTypes.object,
+    previewVariables: React.PropTypes.string,
     scriptId: React.PropTypes.string
 };
 
@@ -78,7 +80,7 @@ You can render this later simply by
 // or with all optional parameters
 const event = { platform: 'react-stack' }
 
-<GoogleTagManager gtmId='GTM-12345' scriptId='gtm-script-container' dataLayerName='dl-backup' additionalEvents={event} />
+<GoogleTagManager gtmId='GTM-12345' scriptId='gtm-script-container' dataLayerName='dl-backup' additionalEvents={event} previewVariables='' />
 ```
 
 In this example the google tag manager id, the dataLayer name, additional events and the script id where gtm script should be mounted are configurable through props:
@@ -89,6 +91,7 @@ In this example the google tag manager id, the dataLayer name, additional events
 | `dataLayerName`     | no            | `dataLayer`                     |
 | `additionalEvents`  | no            | `{}`                            |
 | `scriptId`          | no            | `react-google-tag-manager-gtm`  |
+| `previewVariables`  | no            | `false`                         |
 
 ## Notes:
 
