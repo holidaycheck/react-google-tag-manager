@@ -95,7 +95,7 @@ In this example the google tag manager id, the dataLayer name, additional events
 
 ## Notes:
 
-* The `componentDidMount` part is required is required as React the script contents itself would not be executed otherwise on the client side
+* The `componentDidMount` part is required as the script contents itself would not be executed otherwise on the client side
 * As `eval` can be used to do harm, make sure that you are understanding what you are doing here and read through the script that is evaluated
 * Additionally this module exports `noScriptAsHTML()` and `scriptAsHTML()` which return a simple HTML string
 * `gtmParts` takes the following arguments:
