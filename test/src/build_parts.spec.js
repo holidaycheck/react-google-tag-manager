@@ -45,8 +45,10 @@ describe('The function buildParts', () => {
 
     it('should consume a `dataLayerName`', () => {
         const dataLayerArgs = Object.assign(onlyIdArgs, { dataLayerName: 'MyFooBarLayer' });
+        const script = buildParts(dataLayerArgs).script;
 
-        expect(buildParts(dataLayerArgs).script).to.have.entriesCount('MyFooBarLayer', 1);
+        expect(script).to.be.javascript();
+        expect(script).to.have.entriesCount('MyFooBarLayer', 1);
     });
 
     it('should consume a `previewVariables`', () => {
@@ -65,8 +67,10 @@ describe('The function buildParts', () => {
 
     it('should use a provided `scheme` option', () => {
         const schemaWithIdArgs = Object.assign(onlyIdArgs, { scheme: 'https:' });
+        const script = buildParts(schemaWithIdArgs).script;
 
-        expect(buildParts(schemaWithIdArgs).script).to.have.entriesCount('https:', 1);
+        expect(script).to.be.javascript();
+        expect(script).to.have.entriesCount('https:', 1);
         expect(buildParts(schemaWithIdArgs).iframe).to.have.entriesCount('https:', 1);
     });
 
@@ -82,10 +86,12 @@ describe('The function buildParts', () => {
             clientTimestamp: 1465848238816
         };
         const addtionalEventsArgs = Object.assign(onlyIdArgs, { additionalEvents });
+        const script = buildParts(addtionalEventsArgs).script;
 
-        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"platform":"react-stack"', 1);
-        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"forceMobile":false', 1);
-        expect(buildParts(addtionalEventsArgs).script).to.have.entriesCount('"clientTimestamp":1465848238816', 1);
+        expect(script).to.be.javascript();
+        expect(script).to.have.entriesCount('"platform":"react-stack"', 1);
+        expect(script).to.have.entriesCount('"forceMobile":false', 1);
+        expect(script).to.have.entriesCount('"clientTimestamp":1465848238816', 1);
     });
 
     it('should return an object with a property `iframe`', () => {
