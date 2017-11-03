@@ -1,5 +1,22 @@
-import { expect } from 'chai';
+import { expect, Assertion } from 'chai';
+import { parse } from 'acorn';
 import buildParts from '../../src/build_parts';
+
+Assertion.addMethod('javascript', function () {
+    let isValidJS = false;
+    try {
+        parse(this._obj, { ecmaVersion: 5 });
+        isValidJS = true;
+    } catch (e) {
+        isValidJS = false;
+    }
+
+    this.assert(
+    isValidJS,
+    'expected #{this} to be valid JavaScript',
+    'expected #{this} to not be valid JavaScript'
+  );
+});
 
 let onlyIdArgs;
 let parts;
@@ -18,6 +35,10 @@ describe('The function buildParts', () => {
         expect(parts.script).to.have.entriesCount('GTM-asd123', 1);
     });
 
+    it('should build valid javascript', () => {
+        expect(parts.script).to.be.javascript();
+    });
+
     it('should through an exception when no id is provided', () => {
         expect(() => buildParts()).to.throw(Error);
     });
@@ -31,9 +52,11 @@ describe('The function buildParts', () => {
     it('should consume a `previewVariables`', () => {
         const dataLayerArgs = Object.assign(onlyIdArgs,
           { previewVariables: '&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x' });
+        const script = buildParts(dataLayerArgs).script;
 
-        expect(buildParts(dataLayerArgs).script).to.have
-            .entriesCount('&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x', 1);
+        expect(script).to.be.javascript();
+        expect(script).to.have
+            .entriesCount('+"&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x"', 1);
     });
 
     it('should have a `dataLayerName` default', () => {

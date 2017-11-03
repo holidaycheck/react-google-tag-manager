@@ -16,7 +16,7 @@ function buildParts({ id, dataLayerName = 'dataLayer', additionalEvents = {}, sc
             w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js', ${convertToKeyValueString(additionalEvents)}});
             var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
             j.async=true;j.src='${scheme}//www.googletagmanager.com/gtm.js?id='+i+dl
-            +${previewVariables ? previewVariables : ''};
+            ${previewVariables ? `+"${previewVariables}"` : ''};
             f.parentNode.insertBefore(j,f);
         })(window,document,'script','${dataLayerName}','${id}');`;
 
