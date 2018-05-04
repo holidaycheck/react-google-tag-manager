@@ -51,7 +51,7 @@ describe('The function buildParts', () => {
         expect(script).to.have.entriesCount('MyFooBarLayer', 1);
     });
 
-    it('should consume a `previewVariables`', () => {
+    it('should consume a `previewVariables` and use it for the script', () => {
         const dataLayerArgs = Object.assign(onlyIdArgs,
           { previewVariables: '&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x' });
         const script = buildParts(dataLayerArgs).script;
@@ -60,6 +60,13 @@ describe('The function buildParts', () => {
         expect(script).to.have
             .entriesCount('+"&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x"', 1);
     });
+
+	it('should consume a `previewVariables` and use it for the iframe', () => {
+		const dataLayerArgs = Object.assign(onlyIdArgs,
+			{ previewVariables: '&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x' });
+		const iframe = buildParts(dataLayerArgs).iframe;
+		expect(iframe).to.have.entriesCount('&gtm_auth=EXAMPLE&gtm_preview=env-14&gtm_cookies_win=x', 1);
+	});
 
     it('should have a `dataLayerName` default', () => {
         expect(buildParts(onlyIdArgs).script).to.have.entriesCount('dataLayer', 2);

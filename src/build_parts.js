@@ -8,7 +8,7 @@ function buildParts({ id, dataLayerName = 'dataLayer', additionalEvents = {}, sc
     }
 
     const iframe = `
-        <iframe src="${scheme}//www.googletagmanager.com/ns.html?id=${id}"
+        <iframe src="${scheme}//www.googletagmanager.com/ns.html?id=${id}${previewVariables ? previewVariables : ''}"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
 
     const script = `
