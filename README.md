@@ -27,12 +27,13 @@ To use it in your project run `npm i react-google-tag-manager`. It could be used
 
 ```javascript
 import React from 'react';
+import PropTypes from 'prop-types';
 import gtmParts from 'react-google-tag-manager';
 
 class GoogleTagManager extends React.Component {
     componentDidMount() {
-        const dataLayerName = this.props.dataLayerName || 'dataLayer';
-        const scriptId = this.props.scriptId || 'react-google-tag-manager-gtm';
+        const dataLayerName = this.props.dataLayerName;
+        const scriptId = this.props.scriptId;
 
         if (!window[dataLayerName]) {
             const gtmScriptNode = document.getElementById(scriptId);
@@ -44,16 +45,16 @@ class GoogleTagManager extends React.Component {
     render() {
         const gtm = gtmParts({
             id: this.props.gtmId,
-            dataLayerName: this.props.dataLayerName || 'dataLayer',
-            additionalEvents: this.props.additionalEvents || {},
-            previewVariables: this.props.previewVariables || false,
-            scheme: this.props.scheme || 'https:',
+            dataLayerName: this.props.dataLayerName,
+            additionalEvents: this.props.additionalEvents,
+            previewVariables: this.props.previewVariables,
+            scheme: this.props.scheme,
         });
 
         return (
             <div>
                 <div>{gtm.noScriptAsReact()}</div>
-                <div id={this.props.scriptId || 'react-google-tag-manager-gtm'}>
+                <div id={this.props.scriptId}>
                     {gtm.scriptAsReact()}
                 </div>
             </div>
@@ -62,12 +63,20 @@ class GoogleTagManager extends React.Component {
 }
 
 GoogleTagManager.propTypes = {
-    gtmId: React.PropTypes.string.isRequired,
-    dataLayerName: React.PropTypes.string,
-    additionalEvents: React.PropTypes.object,
-    previewVariables: React.PropTypes.string,
-    scriptId: React.PropTypes.string,
-    scheme: React.PropTypes.string,
+    gtmId: PropTypes.string.isRequired,
+    dataLayerName: PropTypes.string,
+    additionalEvents: PropTypes.object,
+    previewVariables: PropTypes.string,
+    scriptId: PropTypes.string,
+    scheme: PropTypes.string,
+};
+
+GoogleTagManager.defaultProps = {
+  dataLayerName: 'dataLayer',
+  additionalEvents: {},
+  previewVariables: false,
+  scriptId: 'react-google-tag-manager-gtm',
+  scheme: 'https:',
 };
 
 export default GoogleTagManager;
