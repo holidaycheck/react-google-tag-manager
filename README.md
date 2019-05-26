@@ -17,6 +17,7 @@ Other requirements for the GTM implementation are:
 1. provide a GTM-ID
 1. provide additional events on script initialization (optional)
 1. provide a name for the dataLayer (optional)
+1. provde a GTM-AuthId
 1. can be used for server-side-rendering and client-side-rendering
 1. contains tests
 1. installable via npm
@@ -48,6 +49,7 @@ class GoogleTagManager extends React.Component {
             additionalEvents: this.props.additionalEvents || {},
             previewVariables: this.props.previewVariables || false,
             scheme: this.props.scheme || 'https:',
+            authId: this.props.authId,
         });
 
         return (
@@ -62,12 +64,13 @@ class GoogleTagManager extends React.Component {
 }
 
 GoogleTagManager.propTypes = {
-    gtmId: React.PropTypes.string.isRequired,
-    dataLayerName: React.PropTypes.string,
-    additionalEvents: React.PropTypes.object,
-    previewVariables: React.PropTypes.string,
-    scriptId: React.PropTypes.string,
-    scheme: React.PropTypes.string,
+  gtmId: React.PropTypes.string.isRequired,
+  dataLayerName: React.PropTypes.string,
+  additionalEvents: React.PropTypes.object,
+  previewVariables: React.PropTypes.string,
+  scriptId: React.PropTypes.string,
+  scheme: React.PropTypes.string,
+  authId: React.PropTypes.string
 };
 
 export default GoogleTagManager;
@@ -77,36 +80,38 @@ You can render this later simply by
 
 ```
 // inside the render method where you want to include the tag manager
-<GoogleTagManager gtmId='GTM-12345' />
+<GoogleTagManager gtmId='GTM-12345', authId='Tabx_iopoheZ2abcd7zy-g' />
 
 // or with all optional parameters
 const event = { platform: 'react-stack' }
 
-<GoogleTagManager gtmId='GTM-12345' scriptId='gtm-script-container' dataLayerName='dl-backup' additionalEvents={event} previewVariables='' scheme='https:' />
+<GoogleTagManager gtmId='GTM-12345' scriptId='gtm-script-container' dataLayerName='dl-backup' additionalEvents={event} previewVariables='' scheme='https:' authId='Tabx_iopoheZ2abcd7zy-g'/>
 ```
 
-In this example the google tag manager id, the dataLayer name, additional events and the script id where gtm script should be mounted are configurable through props:
+In this example the google tag manager id, authId, the dataLayer name, additional events and the script id where gtm script should be mounted are configurable through props:
 
-| prop                | required      | default value                   |
-| ------------------- | ------------- |-------------------------------- |
-| `gtmId`             | yes           |                                 |
-| `dataLayerName`     | no            | `dataLayer`                     |
-| `additionalEvents`  | no            | `{}`                            |
-| `scriptId`          | no            | `react-google-tag-manager-gtm`  |
-| `previewVariables`  | no            | `false`                         |
-| `scheme          `  | no            | `https:`                         |
+| prop               | required | default value                  |
+| ------------------ | -------- | ------------------------------ |
+| `gtmId`            | yes      |                                |
+| `dataLayerName`    | no       | `dataLayer`                    |
+| `additionalEvents` | no       | `{}`                           |
+| `scriptId`         | no       | `react-google-tag-manager-gtm` |
+| `previewVariables` | no       | `false`                        |
+| `scheme`           | no       | `https:`                       |
+| `authId`           | no       | ``                             |
 
 ## Notes:
 
-* The `componentDidMount` part is required as the script contents itself would not be executed otherwise on the client side
-* As `eval` can be used to do harm, make sure that you are understanding what you are doing here and read through the script that is evaluated
-* Additionally this module exports `noScriptAsHTML()` and `scriptAsHTML()` which return a simple HTML string
-* `gtmParts` takes the following arguments:
+- The `componentDidMount` part is required as the script contents itself would not be executed otherwise on the client side
+- As `eval` can be used to do harm, make sure that you are understanding what you are doing here and read through the script that is evaluated
+- Additionally this module exports `noScriptAsHTML()` and `scriptAsHTML()` which return a simple HTML string
+- `gtmParts` takes the following arguments:
 
-| argument keys       | required      | default value |
-| ------------------- | ------------- | ------------- |
-| `id`                | yes           |               |
-| `dataLayerName`     | no            | `dataLayer`   |
-| `additionalEvents`  | no            | `{}`          |
-| `scheme`            | no            | ``            |
-| `previewVariables`  | no            | `false`       |
+| argument keys      | required | default value |
+| ------------------ | -------- | ------------- |
+| `id`               | yes      |               |
+| `dataLayerName`    | no       | `dataLayer`   |
+| `additionalEvents` | no       | `{}`          |
+| `scheme`           | no       | ``            |
+| `previewVariables` | no       | `false`       |
+| `authId`           | no       | ``            |

@@ -1,6 +1,6 @@
 {
   "name": "react-google-tag-manager",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "This package contains a react based implementation for Google's Tag Manager snippet.",
   "main": "lib/index.js",
   "scripts": {
